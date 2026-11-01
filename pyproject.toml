@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "inmateriis-platelink"
+version = "0.4.0b1"
+description = "Shared physical build-plate inventory and OrcaSlicer texture plugin"
+requires-python = ">=3.10"
+license = {text = "AGPL-3.0-only"}
+authors = [{name = "Inmateriis"}]
+readme = "README.md"
+[project.optional-dependencies]
+labels = ["reportlab>=4,<5"]
+[tool.setuptools.packages.find]
+where = ["src"]
+[tool.setuptools.package-data]
+inmateriis_platelink = ["*.html", "textures/*.png", "textures/*.json", "web/*.html", "web/assets/*", "_vendor/*.txt"]

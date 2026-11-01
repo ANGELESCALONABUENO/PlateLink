@@ -1,0 +1,27 @@
+{
+  "black-glass": {
+    "filename": "black-glass.png",
+    "sha256": "7401a0e1117b16f55102b37f7160242111a90a843581db4a60b545b7f3ff382a",
+    "opacity70_sha256": "0f99106aee57e9788713889fd816adcd3dbb1651961cdfcdef7241dc6efa9362"
+  },
+  "carbon": {
+    "filename": "carbon.png",
+    "sha256": "3df5c7d0909babb9a872340acba2058583bd7356d38236d5cf7f698ec59ed9b0",
+    "opacity70_sha256": "e37b45c49dc24a4f11b6c51514f15a8e13ffa9e8f3cb7846cadba30732686f60"
+  },
+  "engineering": {
+    "filename": "engineering.png",
+    "sha256": "7e63f43aecb84a6bd9dd88d69da41821a8ce14858a729f20aebc0e5f4963870f",
+    "opacity70_sha256": "1e7c1ccd62618a3c6f3bf26e11f8392ea00331a1bfefc82c516003e9f2d6c923"
+  },
+  "high-temperature-metal": {
+    "filename": "high-temperature-metal.png",
+    "sha256": "28306e70e794b6ad8a83c37260a5512d496db3aec67b91636fce1ae9e6f712e9",
+    "opacity70_sha256": "7545720b35a1c14033705b3cad9b5b7f10a5b81e8ed9cbfc6767e8cc20cc6ac2"
+  },
+  "gold-pei": {
+    "filename": "gold-pei.png",
+    "sha256": "9a4d06e269ab43f63c69ffa234843a9055c741db7bf97d8e09b9a3c1754d5e88",
+    "opacity70_sha256": "100565d7f6debfbeb241d61664393b8a50a771fb309d96391c833f7a14770222"
+  }
+}

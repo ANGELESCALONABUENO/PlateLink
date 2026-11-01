@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+*.private.*
+*token*
+connections.json
+print-config.json
+data/
+*.sqlite*
+*.db
+jobs.json
+build/
+dist/
+*.egg-info/
+.DS_Store
