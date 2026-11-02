@@ -36,3 +36,12 @@ class TexturesTest(unittest.TestCase):
   with self.assertRaises(ValueError):apply_texture(installed,state,host,api,'local.png')
   state['printers'][0]['installed']={**installed,'face':'B'}
   with self.assertRaises(ValueError):apply_texture(installed,state,host,api,'local.png')
+
+ def test_explicit_subscribed_alias_and_ambiguous_rejection(self):
+  alias='_subscribed/known-bundle/22IDEX V3'
+  installed={'plate_id':'1','face':'A','texture_id':'carbon'}
+  state={'printers':[{'printer':'22IDEX V3','orca_aliases':[alias],'installed':installed}]}
+  self.assertEqual(selected_assignment(state,alias),installed)
+  with self.assertRaises(ValueError):selected_assignment(state,'_subscribed/other-bundle/22IDEX V3')
+  state['printers'].append({'printer':'Other','orca_aliases':[alias],'installed':installed})
+  with self.assertRaises(ValueError):selected_assignment(state,alias)

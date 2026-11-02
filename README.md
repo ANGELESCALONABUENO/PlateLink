@@ -77,3 +77,5 @@ Inventario compartido de camas físicas para impresión 3D: identifica cada plac
 ## License
 
 AGPL-3.0-only. Bundled third-party code retains its applicable license; see the notices above.
+
+The texture popup checks the installed plate every **15 seconds** while open. It only writes a texture when its local reference differs. Exact subscribed-preset aliases may be configured with `orca_aliases` per printer; names are never matched by stripping an arbitrary bundle namespace.

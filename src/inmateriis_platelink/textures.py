@@ -29,7 +29,7 @@ def texture_for(face):
 def assignment_rows(state,config):
  rows=[]
  for connection in config.get('printers',[]):
-  name=connection['orca_printer'];a=state.get('assignments',{}).get(name);row={'printer':name,'installed':None}
+  name=connection['orca_printer'];a=state.get('assignments',{}).get(name);row={'printer':name,'orca_aliases':connection.get('orca_aliases',[]),'installed':None}
   if a:
    p=next((p for p in state['plates'] if p['id']==a['plate_id']),None)
    f=next((f for f in (p or {}).get('faces',[]) if f['id']==a['face']),None)
@@ -39,7 +39,7 @@ def assignment_rows(state,config):
  return {'schema':1,'revision':state['revision'],'printers':rows}
 
 def selected_assignment(state,printer):
- rows=[r for r in state.get('printers',[]) if r.get('printer')==printer]
+ rows=[r for r in state.get('printers',[]) if r.get('printer')==printer or printer in r.get('orca_aliases',[])]
  if len(rows)!=1:raise ValueError('Relaciona este perfil exacto de Orca en las conexiones de PlateLink')
  installed=rows[0].get('installed')
  if not installed:raise ValueError('No hay placa y cara registradas como instaladas')

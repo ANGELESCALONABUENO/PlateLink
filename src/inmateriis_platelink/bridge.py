@@ -91,8 +91,11 @@ def validate_config(value):
         if not name or len(name) > 120 or name in ids or p.get("kind") not in ("moonraker", "duet_dashboard"):
             raise ValueError("Cada equipo necesita nombre único y tipo moonraker o duet_dashboard")
         ids.add(name)
+        aliases = p.get("orca_aliases", [])
+        if not isinstance(aliases, list) or len(aliases) > 20 or any(not isinstance(a, str) or not a.strip() or len(a) > 300 for a in aliases):
+            raise ValueError("Alias de Orca inválidos")
         result["printers"].append({"name": name, "kind": p["kind"], "url": base_url(p.get("url", "")),
-                                  "orca_printer": str(p.get("orca_printer", name))})
+                                  "orca_printer": str(p.get("orca_printer", name)), "orca_aliases": list(dict.fromkeys(aliases))})
     if len(ids) > 30:
         raise ValueError("Máximo 30 equipos")
     return result
