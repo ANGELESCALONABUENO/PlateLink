@@ -3,7 +3,7 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 [project]
 name = "inmateriis-platelink"
-version = "0.4.0b1"
+version = "0.4.0b2"
 description = "Shared physical build-plate inventory and OrcaSlicer texture plugin"
 requires-python = ">=3.10"
 license = {text = "AGPL-3.0-only"}

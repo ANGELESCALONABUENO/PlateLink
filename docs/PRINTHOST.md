@@ -1,6 +1,6 @@
 # Optional laminated label printing
 
-This integration targets the Brother PT-P950NW CUPS queue with 36 mm laminated tape. The PDF is 104 x 36 mm. It is independent from the QL-700 thermal-label broker. Check the queue name and loaded tape before printing; a queue name cannot confirm the installed consumable.
+This integration targets the Brother PT-P950NW CUPS queue with 36 mm laminated tape. The PDF is 62 x 36 mm. It is independent from the QL-700 thermal-label broker. Check the queue name and loaded tape before printing; a queue name cannot confirm the installed consumable.
 
 ## On the PlateLink server
 

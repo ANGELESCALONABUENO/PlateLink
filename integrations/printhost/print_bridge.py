@@ -4,7 +4,7 @@ from pathlib import Path
 from http.server import BaseHTTPRequestHandler,ThreadingHTTPServer
 ROOT=Path.home()/'platelink-print';LOCK=threading.Lock()
 def command(path):
-    return ['lp','-d','Brother_PTP950NW_36mm','-n','1','-t','PlateLink - Placa física','-o','PageSize=Custom.36x104mm','-o','orientation-requested=4','-o','fit-to-page','-o','AutoCut=True','-o','HalfCut=True','-o','RequireMatchingLabelSize=True',str(path)]
+    return ['lp','-d','Brother_PTP950NW_36mm','-n','1','-t','PlateLink - Placa física','-o','PageSize=Custom.36x62mm','-o','orientation-requested=4','-o','fit-to-page','-o','AutoCut=True','-o','HalfCut=True','-o','RequireMatchingLabelSize=True',str(path)]
 def submit(data,key,runner=subprocess.run):
     digest=hashlib.sha256(data).hexdigest()
     with LOCK:
@@ -25,7 +25,7 @@ class Handler(BaseHTTPRequestHandler):
         body=json.dumps(value).encode();self.send_response(code);self.send_header('Content-Type','application/json');self.send_header('Content-Length',str(len(body)));self.end_headers();self.wfile.write(body)
     def do_GET(self):
         if self.path!='/health':return self.reply(404,{'error':'Ruta inválida'})
-        self.reply(200,{'ok':True,'printer':'Brother_PTP950NW_36mm','media':'36 x 104 mm'})
+        self.reply(200,{'ok':True,'printer':'Brother_PTP950NW_36mm','media':'36 x 62 mm'})
     def do_POST(self):
         if self.path!='/print':return self.reply(404,{'error':'Ruta inválida'})
         if not hmac.compare_digest(self.headers.get('Authorization',''),'Bearer '+(ROOT/'token').read_text().strip()):return self.reply(403,{'error':'No autorizado'})

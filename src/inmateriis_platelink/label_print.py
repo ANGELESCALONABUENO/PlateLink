@@ -17,7 +17,7 @@ def label(root,identifier):
 def _label(root,identifier):
     config=settings(root)
     p=lookup(Store(root).read(),identifier)
-    data={'code':p['code'],'faces':[{'id':f['id'],'surface':f['surface']} for f in p['faces']], 'url':config['public_url']+'/#plate='+p['id']}
+    data={'layout':'compact-62x36-v1','code':p['code'],'faces':[{'id':f['id'],'surface':f['surface']} for f in p['faces']], 'url':config['public_url']+'/#plate='+p['id']}
     digest=hashlib.sha256(json.dumps(data,sort_keys=True,ensure_ascii=False).encode()).hexdigest()
     out=Path(root)/'labels';out.mkdir(exist_ok=True)
     pdf=out/(digest+'.pdf');png=out/(digest+'.png')
@@ -29,7 +29,7 @@ def _label(root,identifier):
 
 def preview(root,identifier):
     p,digest,pdf,png=label(root,identifier)
-    return {'plate_id':p['id'],'code':p['code'],'digest':digest,'image':'/api/labels/'+p['id']+'/preview.png','pdf':'/api/labels/'+p['id']+'/label.pdf','printer':'Brother PT-P950NW','size':'104 × 36 mm','copies':1}
+    return {'plate_id':p['id'],'code':p['code'],'digest':digest,'image':'/api/labels/'+p['id']+'/preview.png','pdf':'/api/labels/'+p['id']+'/label.pdf','printer':'Brother PT-P950NW','size':'62 × 36 mm','copies':1}
 
 def print_label(root,value):
     if set(value)!={'plate_id','digest','request_id'}:raise ValueError('Solicitud de etiqueta inválida')

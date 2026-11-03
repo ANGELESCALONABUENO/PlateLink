@@ -46,6 +46,15 @@ def selected_assignment(state,printer):
  if installed.get('texture_id') not in TEXTURES:raise ValueError('Asigna una textura visual a esta cara en el inventario')
  return installed
 
+def resolve_installed_printer(state, canonical, available, current):
+ rows=[r for r in state.get('printers',[]) if r.get('printer')==canonical]
+ if len(rows)!=1:raise ValueError('Perfil no registrado en este inventario')
+ row=rows[0];allowed=[canonical]+row.get('orca_aliases',[])
+ matches=[name for name in allowed if name in available]
+ if current in matches:return current
+ if len(matches)!=1:raise ValueError('Selecciona en Orca el paquete que quieres usar; hay varios perfiles o ninguno instalado')
+ return matches[0]
+
 def install_texture(root,key):
  if key not in TEXTURES:raise ValueError('Textura no reconocida')
  src=ASSETS/(key+'.png');data=src.read_bytes()
@@ -58,7 +67,7 @@ def install_texture(root,key):
   data=opacity70(data)
   if hashlib.sha256(data).hexdigest()!=expected:raise ValueError('La opacidad de la textura no coincide')
   tmp=dest.with_suffix('.tmp');tmp.write_bytes(data);os.replace(tmp,dest)
- return str(dest)
+ return dest.as_posix()
 
 def apply_texture(expected,fresh,host,api,path):
  current=selected_assignment(fresh,host['printer'])

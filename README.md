@@ -13,6 +13,7 @@ PlateLink is an independent beta project: a shared inventory dashboard and an Or
 - Consults Spoolman in read-only mode for materials and temperature references.
 - Provides a standalone dashboard that follows the system light/dark theme, with a shared plate picker and conflict detection.
 - Supplies five visual bed textures at 70% opacity: engineering, carbon, black glass, textured gold PEI and silver high-temperature plate.
+- Generates compact **62 × 36 mm** QR labels (40% less tape length than the earlier 104 mm format).
 - Optionally generates QR labels and sends one laminated label to a configured PrintHost/CUPS bridge after preview.
 
 ### Clear boundaries
@@ -49,11 +50,11 @@ Requires an OrcaSlicer version with Python Script plugins and the preset API use
 1. Open **PlateLink · Inventario compartido** and configure the central server URL.
 2. Register and assign plates in the shared inventory.
 3. Open **PlateLink · Textura de cama instalada** and leave its window open to follow the currently selected printer's installed surface.
-4. Save the printer preset when Orca asks if you want the visual reference to persist.
+4. Subscribed bundle presets keep only the texture reference in their local cache, with an exact identity check and backup. Cloud can replace that cache during an update; refresh the texture window to reconcile it again. Ordinary local presets still use Orca’s save workflow.
 
 The texture capability writes only `bed_custom_texture`; PrinterLink remains responsible for the STL. Inventory changes do not change the physical printer's settings. Do not infer that a visual bed texture changes slicing temperatures.
 
-The GitHub source is a **0.4.0 beta development snapshot** combining the dashboard and optional label work. It is distinct from the previously published Orca Cloud 0.3.1 plugin. macOS UI has been exercised; updated Windows end-to-end verification and Linux Orca UI testing remain pending. Do not treat platform-independent wheel packaging as completed platform validation.
+The GitHub source is a **0.4.0b2 beta development snapshot** combining the dashboard and optional label work. It is distinct from the previously published Orca Cloud 0.3.1 plugin. macOS UI has been exercised; updated Windows end-to-end verification and Linux Orca UI testing remain pending. Do not treat platform-independent wheel packaging as completed platform validation.
 
 ## Optional laminated labels
 
@@ -79,3 +80,11 @@ Inventario compartido de camas físicas para impresión 3D: identifica cada plac
 AGPL-3.0-only. Bundled third-party code retains its applicable license; see the notices above.
 
 The texture popup checks the installed plate every **15 seconds** while open. It only writes a texture when its local reference differs. Exact subscribed-preset aliases may be configured with `orca_aliases` per printer; names are never matched by stripping an arbitrary bundle namespace.
+
+## Screenshots
+
+![Shared inventory](docs/screenshots/inventory.png)
+
+![Compact engineering label preview](docs/screenshots/compact-label.png)
+
+The laboratory dashboard and editable print timeline are a separate project: [LabDashboard](https://github.com/ANGELESCALONABUENO/LabDashboard).

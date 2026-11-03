@@ -12,7 +12,7 @@ import sqlite3
 import sys
 import uuid
 
-VERSION = '0.4.0b1'
+VERSION = '0.4.0b2'
 BED_TYPES = ('Cool Plate','Engineering Plate','High Temp Plate','Textured PEI Plate','Textured Cool Plate','Supertack Plate')
 EVENTS = ('print','cleaning','wear','damage','adhesion','maintenance')
 

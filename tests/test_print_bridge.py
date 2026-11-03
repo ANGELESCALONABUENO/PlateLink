@@ -8,7 +8,7 @@ class Tests(unittest.TestCase):
  def runjob(self,args,**kwargs):self.calls.append(args);return subprocess.CompletedProcess(args,0,stdout='request id is Brother_PTP950NW_36mm-42 (1 file(s))\n')
  def test_fixed_queue_and_single_copy(self):
   v=bridge.submit(b'%PDF-'+b'0'*150,'a'*36,self.runjob)
-  self.assertTrue(v['ok']);args=self.calls[0];self.assertEqual(args[args.index('-d')+1],'Brother_PTP950NW_36mm');self.assertEqual(args[args.index('-n')+1],'1');self.assertIn('PageSize=Custom.36x104mm',args);self.assertIn('RequireMatchingLabelSize=True',args)
+  self.assertTrue(v['ok']);args=self.calls[0];self.assertEqual(args[args.index('-d')+1],'Brother_PTP950NW_36mm');self.assertEqual(args[args.index('-n')+1],'1');self.assertIn('PageSize=Custom.36x62mm',args);self.assertIn('RequireMatchingLabelSize=True',args)
  def test_duplicate_key_does_not_reprint(self):
   data=b'%PDF-'+b'0'*150;bridge.submit(data,'b'*36,self.runjob);v=bridge.submit(data,'b'*36,self.runjob);self.assertTrue(v['duplicate']);self.assertEqual(len(self.calls),1)
   with self.assertRaises(ValueError):bridge.submit(b'%PDF-other','b'*36,self.runjob)
